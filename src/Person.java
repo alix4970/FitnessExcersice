@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person {
-    private String name;
-    private String cpr;
+    protected String name;
+    protected String cpr;
 
     public Person(){
 
@@ -15,15 +18,8 @@ public class Person {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getCpr() {
         return cpr;
-    }
-
-    public void setCpr(String cpr) {
-        this.cpr = cpr;
     }
 }

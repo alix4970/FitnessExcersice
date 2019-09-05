@@ -5,17 +5,15 @@ public class Adminstration extends Employee {
 
     }
 
-    public Adminstration(String name, String cpr, int hours, int vacation) {
-        super(name, cpr, hours);
+    public Adminstration(String name, String cpr, int vacation) {
+        super(name, cpr);
+        this.name = name;
+        this.cpr = cpr;
         this.vacation = vacation;
     }
 
     public int getVacation() {
         return vacation;
-    }
-
-    public void setVacation(int vacation) {
-        this.vacation = vacation;
     }
 
 

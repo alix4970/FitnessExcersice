@@ -1,23 +1,100 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
-
-        printPerson();
-        printMembers();
-        printEmployees();
+    public static void main(String[] args) throws FileNotFoundException {
 
         FileHandling f = new FileHandling();
 
-        f.openFile();
-        System.out.printf("%-15s%-12s\n", "Name", "CPR");
-        printSpace();
-        f.readFile();
-        f.closeFile();
+        List<Members> people = new ArrayList<>();
+        List<Employee> employeeList = new ArrayList<>();
+        f.filePrint();
+
+        people.add(new Members(f.getSpited()[0], f.getSpited()[1]));
+        people.add(new Members(f.getSpited()[2], f.getSpited()[3]));
+        people.add(new Members(f.getSpited()[4], f.getSpited()[5]));
+
+
+
+
+
+
+        people.add(new Members("Alfito", "150197-2020", false));
+        people.add(new Members("Arnold", "210297-3020", true));
+        people.add(new Members("Gunnar", "220477-3020", false));
+        people.add(new Members("Asger", "230977-4499", true));
+
+
+        employeeList.add(new Instructor("Kim", "208540-2094", 120));
+        employeeList.add(new Adminstration("Kim", "208540-2094", 3));
+        employeeList.add(new Instructor("Nicklas", "208750-4876", 30));
+        employeeList.add(new Adminstration("Kim", "208540-2094", 5));
+
+
+        printNameAndCpr((ArrayList<Members>) people, (ArrayList<Employee>) employeeList);
+        fitnessMembers((ArrayList<Members>)people);
+        printEmployee((ArrayList<Employee>) employeeList);
+
+
+
+        /*printPerson();
+        printMembers();
+        printEmployees();
+        */
+
     }
 
-    public static void printPerson() {
+
+
+    //// Denne metode printer alle members og employess navn og cpr.
+    public static void printNameAndCpr(ArrayList<Members> people, ArrayList<Employee> employees) {
+
+        System.out.println("Members & Empoloyess Navn / Cpr");
+        System.out.printf("%-15s%-12s\n", "Navn", "Cpr");
+        start();
+
+        for (Employee e : employees) {
+            System.out.printf("%-15s%-12s\n", e.getName(), e.getCpr());
+        }
+
+        end();
+
+    }
+
+    ////Denne metode printer alle members info ud.
+    public static void fitnessMembers(ArrayList<Members> people) {
+
+        System.out.println("Fitness Members");
+        System.out.printf("%-15s%-12s%-12s%-12s\n", "Navn ", "Cpr ", "Member type ", " Fee");
+        start();
+        for (Members m :
+                people) {
+            System.out.printf("%-15s%-12s%-12s%-12s\n", m.getName(), m.getCpr(), m.getMemberType(), m.monthlyFee());
+
+        }
+        end();
+    }
+
+
+    // Denne metode printer alle employyes info ud.
+    public static void printEmployee(ArrayList<Employee> employeeList) {
+        System.out.println("Fitness Employees");
+        System.out.printf("%-15s%-12s%-12s%-12s%-12s\n", "Navn", "Cpr", "Hours", "Salary", "Vacation");
+        start();
+        for (Employee e :
+                employeeList) {
+
+            if (e instanceof Adminstration) {
+                System.out.printf("%-15s%-12s%-12s%-12s%-12s\n", e.getName(), e.getCpr(), e.getHours(), e.getSalary(), ((Adminstration) e).getVacation());
+            } else {
+                System.out.printf("%-15s%-12s%-12s%-12s\n", e.getName(), e.getCpr(), e.getHours(), e.getSalary());
+            }
+        }
+        end();
+    }
+
+    /*public static void printPerson() {
         List<Person> personList = new ArrayList<>();
         personList.add(new Person("Mads", "200497-2020"));
         personList.add(new Person("James", "010497-2033"));
@@ -73,6 +150,25 @@ public class Main {
 
         }
         System.out.println();
+    }
+    */
+
+    // Denne metode laver *
+    public static void start() {
+
+        for (int i = 0; i < 75; i++) {
+            System.out.print("*");
+        }
+        System.out.println("");
+    }
+
+
+    //Denne metode laver =
+    public static void end() {
+        for (int i = 0; i < 75; i++) {
+            System.out.print("=");
+        }
+        System.out.println("\n\n");
     }
 
 }

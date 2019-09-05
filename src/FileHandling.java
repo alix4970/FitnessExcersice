@@ -1,34 +1,37 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandling {
 
-    private Scanner sc;
 
-    public void openFile() {
+    private String[] spited;
 
-        try {
-            sc = new Scanner(new File("/Users/alialsharefi/Desktop/Datamatiker/3.semester/Kode/Repetetion/Fitness/src/Persons.txt"));
-        } catch (Exception e) {
-            System.out.println("Could not find file");
-        }
+    public String[] getSpited() {
+
+            return spited;
+    }
+
+    public void setSpited(String[] spited){
+        this.spited = spited;
 
     }
 
+    public void filePrint() throws FileNotFoundException{
+        Scanner sc = new Scanner(new File("/Users/alialsharefi/Desktop/Datamatiker/3.semester/Kode/Repetetion/Fitness/src/Persons.txt"));
 
-    public void readFile() {
-        while (sc.hasNext()) {
-
-            ArrayList<String> listS = new ArrayList<String>();
-            listS.add(sc.nextLine());
-
-            System.out.println(listS);
-
+        ArrayList<String> list = new ArrayList<String>();
+        while (sc.hasNextLine()){
+            list.add(sc.nextLine());
         }
-    }
-
-    public void closeFile() {
         sc.close();
+
+        String listString = String.join(", ", list);
+
+        setSpited(listString.split("\\s+"));
+
     }
+
+
 }

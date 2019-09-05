@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Members extends Person {
 
     private boolean isBasic;
@@ -5,6 +8,10 @@ public class Members extends Person {
     public Members(String name, String cpr, boolean isBasic) {
         super(name, cpr);
         this.isBasic = isBasic;
+    }
+
+    public Members(String name, String cpr){
+        super(name,cpr);
     }
 
     public Members(){
